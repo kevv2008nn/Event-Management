@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Planning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .container {
+            background: white;
+            width: 420px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .price-box {
+            background: #ecf0f1;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1a252f;
+        }
+
+        .back-btn {
+            background: gray;
+            margin-top: 10px;
+        }
+    </style>
+
+    <script>
+        function calculatePrice() {
+            var eventType = document.getElementById("eventType").value;
+            var price = "";
+
+            if (eventType === "Wedding") {
+                price = "₹2,00,000";
+            } else if (eventType === "Birthday") {
+                price = "₹50,000";
+            } else if (eventType === "Corporate") {
+                price = "₹1,20,000";
+            } else if (eventType === "College") {
+                price = "₹80,000";
+            } else {
+                price = "₹0";
+            }
+
+            document.getElementById("price").innerHTML =
+                "Estimated Price: " + price;
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h2>Plan Your Event</h2>
+</header>
+
+<div class="container">
+    <label>Select Event Type</label>
+    <select id="eventType" onchange="calculatePrice()">
+        <option value="">-- Select Event --</option>
+        <option>Wedding</option>
+        <option>Birthday</option>
+        <option>Corporate</option>
+        <option>College Function</option>
+    </select>
+
+    <label>Event Date</label>
+    <input type="date" required>
+
+    <div id="price" class="price-box">
+        Estimated Price: ₹0
+    </div>
+
+    <form action="register.html">
+        <button type="submit">Proceed to Register</button>
+    </form>
+
+    <button class="back-btn" onclick="history.back()">⬅ Back</button>
+</div>
+
+</body>
+</html>
