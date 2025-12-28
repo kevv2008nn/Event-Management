@@ -2,81 +2,160 @@
 <html>
 <head>
     <title>Event Planning</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            margin: 0;
+        /* ---------- Global ---------- */
+        * {
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* ---------- Header ---------- */
         header {
-            background: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50, #1c2833);
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
+        header h2 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* ---------- Container ---------- */
         .container {
             background: white;
             width: 420px;
-            margin: 40px auto;
-            padding: 25px;
-            border-radius: 8px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            animation: fadeIn 0.8s ease;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- Labels ---------- */
         label {
-            font-weight: bold;
-        }
-
-        select, input {
-            width: 95%;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
-        .price-box {
-            background: #ecf0f1;
-            padding: 12px;
-            text-align: center;
-            font-weight: bold;
+            font-weight: 600;
+            color: #2c3e50;
             margin-top: 10px;
+            display: block;
         }
 
-        button {
+        /* ---------- Inputs & Select ---------- */
+        select, input {
             width: 100%;
             padding: 12px;
-            margin-top: 15px;
-            background: #2c3e50;
+            margin: 10px 0 18px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #2c3e50;
+            box-shadow: 0 0 0 3px rgba(44,62,80,0.15);
+        }
+
+        /* ---------- Price Box ---------- */
+        .price-box {
+            background: linear-gradient(135deg, #ecf0f1, #f8f9fa);
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 8px;
+            color: #2c3e50;
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .price-box:hover {
+            transform: scale(1.02);
+        }
+
+        /* ---------- Buttons ---------- */
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
             color: white;
             border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
         }
 
         button:hover {
-            background: #1a252f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.35);
         }
 
+        /* ---------- Back Button ---------- */
         .back-btn {
-            background: gray;
-            margin-top: 10px;
+            background: linear-gradient(135deg, #7f8c8d, #616a6b);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #616a6b, #4d5656);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                margin: 30px auto;
+                padding: 22px;
+            }
         }
     </style>
 
+    <!-- JS LOGIC UNCHANGED -->
     <script>
         function calculatePrice() {
             var eventType = document.getElementById("eventType").value;
-            var price = "";
+            var price = "₹0";
 
             if (eventType === "Wedding") {
                 price = "₹2,00,000";
-            } else if (eventType === "Birthday") {
+            } 
+            else if (eventType === "Birthday") {
                 price = "₹50,000";
-            } else if (eventType === "Corporate") {
+            } 
+            else if (eventType === "Corporate") {
                 price = "₹1,20,000";
-            } else if (eventType === "College") {
+            } 
+            else if (eventType === "College Function") {
                 price = "₹80,000";
-            } else {
-                price = "₹0";
+            } 
+            else if (eventType === "Get Together") {
+                price = "₹95,000";
             }
 
             document.getElementById("price").innerHTML =
@@ -84,6 +163,7 @@
         }
     </script>
 </head>
+
 <body>
 
 <header>
@@ -94,10 +174,11 @@
     <label>Select Event Type</label>
     <select id="eventType" onchange="calculatePrice()">
         <option value="">-- Select Event --</option>
-        <option>Wedding</option>
-        <option>Birthday</option>
-        <option>Corporate</option>
-        <option>College Function</option>
+        <option value="Wedding">Wedding</option>
+        <option value="Birthday">Birthday</option>
+        <option value="Corporate">Corporate</option>
+        <option value="College Function">College Function</option>
+        <option value="Get Together">Get Together</option>
     </select>
 
     <label>Event Date</label>
